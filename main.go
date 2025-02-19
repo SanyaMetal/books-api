@@ -79,7 +79,7 @@ func getAllBookHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "    \"author\": \"%s\",\n", book.Author)
 		fmt.Fprintf(w, "    \"description\": \"%s\"\n", book.Description)
 		if i < len(books)-1 {
-			fmt.Printf(w, "  },\n")
+			fmt.Fprintf(w, "  },\n")
 		} else {
 			fmt.Fprintf(w, "  }\n")
 		}
@@ -181,7 +181,7 @@ func deleteBookHandler(w http.ResponseWriter, r *http.Request) {
 func main() {
 	dbUser := "user"
 	dbPassword := "password"
-	dbName := "bookdb"
+	dbName := "booksdb"
 	dbHost := "localhost"
 	dbPort := "5433"
 
@@ -194,7 +194,7 @@ func main() {
 		log.Fatalf("Не удалось подключиться к БД: %v", errOpen)
 	}
 
-	if err = db.Ping(); err != nil {
+	if err := db.Ping(); err != nil {
 		log.Fatalf("Не удалось выполнить ping к БД: %v", err)
 	}
 	log.Println("Успешное подключение к БД!")
